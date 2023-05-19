@@ -1,13 +1,13 @@
 import { UiContext } from "@/context/ui";
 import { entry } from "@/interfaces";
 import {
-  Card,
   CardActionArea,
   Typography,
   CardContent,
   CardActions,
 } from "@mui/material";
 import { FC, DragEvent, useContext } from "react";
+import { Card } from '@mui/material';
 
 interface Props {
   entry: entry;
@@ -27,16 +27,17 @@ export const EntryCard: FC<Props> = ({ entry }) => {
   };
   return (
     <Card
-      style={{
+      sx={{
         marginBottom: 1,
-        position:'relative', 
-        zIndex: '999 !important',
+        position:'relative', zIndex: 999,forceFallback: 'true'
       }}
+      
       draggable
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
     >
-      <CardActionArea>
+     
+      <CardActionArea >
         <CardContent>
           <Typography whiteSpace="pre-line">{entry.description}</Typography>
         </CardContent>
@@ -45,7 +46,9 @@ export const EntryCard: FC<Props> = ({ entry }) => {
         >
           <Typography variant="body2">Hace 30 minutos</Typography>
         </CardActions>
+        
       </CardActionArea>
+      
     </Card>
   );
 };
