@@ -1,23 +1,43 @@
-import { UiState } from '.';
+import { UiState } from ".";
 
-type UiActionType = {type: 'OpenSidebar'} | {type: 'CloseSidebar'}
+type UiActionType =
+  | { type: "OpenSidebar" }
+  | { type: "CloseSidebar" }
+  | { type: "isAdding"; payload: boolean }
+  | { type: "StartDragging"}
+  | { type: "EndDragging"}
 
 export const uiReducer = (state: UiState, action: UiActionType): UiState => {
-   switch (action.type) {
-      case 'OpenSidebar':
-
-         return {
-            ...state,
-            sideMenuOpen: true
-         }
-      case 'CloseSidebar':
-         return {
-            ...state,
-            sideMenuOpen: false
+  switch (action.type) {
+    case "OpenSidebar":
+      return {
+        ...state,
+        sideMenuOpen: true,
+      };
+    case "CloseSidebar":
+      return {
+        ...state,
+        sideMenuOpen: false,
+      };
+    case "isAdding":
+      return {
+        ...state,
+        isAdding: action.payload,
+      };
+    case 'StartDragging':
+      return {
+         ...state,
+         isDragging: true
       }
-      default:
-         break;
-   }
+    case 'EndDragging':
+      return {
+         ...state,
+         isDragging: false
+      }
 
-   return state;
-}
+    default:
+      break;
+  }
+
+  return state;
+};

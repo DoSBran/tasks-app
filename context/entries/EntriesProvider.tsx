@@ -11,19 +11,19 @@ const Entries_Initial_State: EntriesState = {
    entries: [
     {
         _id: uuidv4(),
-        description: 'any',
+        description: 'Pendientes',
         status: 'pending',
         createAt: Date.now(),
     },
     {
         _id: uuidv4(),
-        description: 'any',
+        description: 'En Proceso',
         status: 'inProgress',
         createAt: Date.now() - 1000000,
     },
     {
         _id: uuidv4(),
-        description: 'any',
+        description: 'Finalizadas',
         status: 'finish',
         createAt: Date.now() - 100000,
     }
@@ -35,10 +35,22 @@ interface provider{
 }
 
 export const EntriesProvider: FC<provider> = ({children}) => {
-   const [state, dispatch] = useReducer(entriesReducer, Entries_Initial_State)
+   const [state, dispatch] = useReducer(entriesReducer, Entries_Initial_State);
+
+   const addEntry = (description: string) => {
+      const newEntry: entry = {
+         _id: uuidv4(),
+         description,
+         createAt: Date.now(),
+         status: 'pending'
+      } 
+
+      dispatch({type: 'Entry - Add New Entry', payload: newEntry});
+   }
    return (
       <EntriesContext.Provider value={{
-         ...state
+         ...state,
+         addEntry
       }}>
          {children}
       </EntriesContext.Provider>
