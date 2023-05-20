@@ -13,7 +13,6 @@ const menuitems: string[] = ["Inicio", "Enviar Email", "Tareas"];
 
 export const SideBar = () => {
   const {sideMenuOpen, closeMenu} = useContext(UiContext);
-  console.log(sideMenuOpen)
   return (
     <Drawer anchor="left" open={sideMenuOpen} onClose={closeMenu}>
       <Box sx={{ width: 250 }}>

@@ -17,7 +17,6 @@ export const EntryCard: FC<Props> = ({ entry }) => {
   const { startDragging, endDragging, isDragging } = useContext(UiContext);
 
   const onDragStart = (e: DragEvent<HTMLDivElement>) => {
-    console.log(e);
     e.dataTransfer.setData("text", entry._id);
     startDragging();
   };

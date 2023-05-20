@@ -7,3 +7,8 @@ docker-compose up -d
 ```
 mongodb://localhost:27017/entriesdb
 ```
+# CrearDatos de prueba en la BD
+Usar API:
+```
+http://localhost:3001/api/seed
+```
