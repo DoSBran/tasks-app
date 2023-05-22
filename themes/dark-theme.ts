@@ -24,7 +24,7 @@ export const darkTheme = createTheme({
             defaultProps:{},
             styleOverrides:{
               root:{
-                backgroundColor: '#1D1C1D'
+                backgroundColor: '#1D1C1D',
               }
             }
           },
