@@ -11,7 +11,8 @@ export function middleware(request: NextRequest) {
         console.log('isvalidId:' + checkMongoIDRegExp.test(id))
         if(!checkMongoIDRegExp.test(id)){
             const reqUrl = request.nextUrl.clone();
-            reqUrl.pathname = '/api/bad-request'
+            reqUrl.pathname = '/api/bad-request';
+            reqUrl.search = `?message=${id} is not a valid MongoID`
             return NextResponse.rewrite(reqUrl);
         }
     }
