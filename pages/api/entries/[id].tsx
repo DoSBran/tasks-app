@@ -19,7 +19,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
         case 'PUT':
             return updateEntry(req, res);
         case 'GET':
-            return getEntry(req, res)
+            return getEntry(req, res);
+        case 'DELETE':
+            return deleteEntry(req, res);
         default:
             return res.status(400).json({message: 'Invalid method'})
 
@@ -70,3 +72,19 @@ const getEntry = async(req: NextApiRequest, res: NextApiResponse) => {
         
    
 }
+
+const deleteEntry = async(req: NextApiRequest, res: NextApiResponse) => {
+    const {id} = req.query;
+
+    await db.connect();
+    const result = await Entry.findByIdAndDelete(id);
+    await db.disconnect();
+
+    if(!result){
+        res.status(400).json({message: "Entry not found"});
+    }
+        
+    return res.status(200).json(result);      
+   
+}
+
